@@ -1,7 +1,10 @@
 from flask import Flask, request
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route("/")
 def main():
@@ -18,3 +21,6 @@ def upload_image():
     f.save(secure_filename(f.filename))
     return 'image route'
 
+
+if __name__ == "__main__":
+    app.run(ssl_context='adhoc')
